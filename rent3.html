@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Payment Tracker</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .group {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .rent-checkbox {
+            transform: scale(1.5);
+            margin-right: 10px;
+        }
+        .payment-method {
+            font-size: 14px;
+            color: green;
+            display: block;
+            margin-top: 5px;
+        }
+        .balance {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .reset-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .reset-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .reset-button:hover {
+            background-color: darkred;
+        }
+        .popup, .reset-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            width: 90%;
+            max-width: 300px;
+        }
+        .popup button, .reset-popup button {
+            margin: 5px;
+            padding: 12px;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px;
+        }
+        .popup button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .reset-popup button {
+            background-color: #333;
+            color: white;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            th, td {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .popup, .reset-popup {
+                width: 95%;
+            }
+            .rent-checkbox {
+                transform: scale(1.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Rent Payment Tracker</h1>
+    
+    <div class="group">
+        <h2>Group 1 (7 Houses)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rent House</th>
+                    <th>Amount ($)</th>
+                    <th>Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>House 1</td><td class="amount">1000</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 2</td><td class="amount">1200</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 3</td><td class="amount">1100</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 4</td><td class="amount">1050</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 5</td><td class="amount">1150</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 6</td><td class="amount">1250</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 7</td><td class="amount">1300</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="balance">Total Balance: $<span id="balance">0</span></div>
+    <div class="reset-container">
+        <button class="reset-button" id="reset-button">Reset All</button>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p>Select Payment Method:</p>
+        <button id="gpay">GPay</button>
+        <button id="cash">Cash</button>
+    </div>
+    
+    <div class="reset-popup" id="reset-popup">
+        <p>Are you sure you want to reset all selections?</p>
+        <button id="yes-reset">Yes</button>
+        <button id="no-reset">No</button>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let totalBalance = Array.from(document.querySelectorAll(".amount"))
+                .map(td => parseFloat(td.textContent))
+                .reduce((a, b) => a + b, 0);
+            
+            const balanceDisplay = document.getElementById("balance");
+            balanceDisplay.textContent = totalBalance;
+            
+            const checkboxes = document.querySelectorAll(".rent-checkbox");
+            const popup = document.getElementById("popup");
+            const overlay = document.getElementById("overlay");
+            const resetPopup = document.getElementById("reset-popup");
+            const resetButton = document.getElementById("reset-button");
+            const yesReset = document.getElementById("yes-reset");
+            const noReset = document.getElementById("no-reset");
+            let currentCheckbox = null;
+
+            function updateBalance() {
+                let paidAmount = Array.from(checkboxes).reduce((sum, checkbox) => {
+                    if (checkbox.checked) {
+                        return sum + parseFloat(checkbox.closest("tr").querySelector(".amount").textContent);
+                    }
+                    return sum;
+                }, 0);
+                balanceDisplay.textContent = totalBalance - paidAmount;
+            }
+
+            // Load saved states from localStorage
+            checkboxes.forEach((checkbox, index) => {
+                const paymentMethodSpan = checkbox.nextElementSibling;
+                const storedChecked = localStorage.getItem(`rent-checkbox-${index}`);
+                const storedMethod = localStorage.getItem(`payment-method-${index}`);
+
+                if (storedChecked === "true") {
+                    checkbox.checked = true;
+                    if (storedMethod) {
+                        paymentMethodSpan.textContent = storedMethod;
+                    }
+                }
+
+                checkbox.addEventListener("change", function() {
+                    if (checkbox.checked) {
+                        currentCheckbox = checkbox;
+                        popup.style.display = "block";
+                        overlay.style.display = "block";
+                    } else {
+                        paymentMethodSpan.textContent = "";
+                        localStorage.removeItem(`payment-method-${index}`);
+                        localStorage.setItem(`rent-checkbox-${index}`, false);
+                        updateBalance();
+                    }
+                });
+            });
+
+            function selectPayment(method) {
+                if (currentCheckbox) {
+                    const index = Array.from(checkboxes).indexOf(currentCheckbox);
+                    const paymentMethodSpan = currentCheckbox.nextElementSibling;
+                    paymentMethodSpan.textContent = method;
+                    localStorage.setItem(`payment-method-${index}`, method);
+                    localStorage.setItem(`rent-checkbox-${index}`, true);
+                    updateBalance();
+                }
+                popup.style.display = "none";
+                overlay.style.display = "none";
+            }
+
+            document.getElementById("gpay").addEventListener("click", function() {
+                selectPayment("GPay");
+            });
+
+            document.getElementById("cash").addEventListener("click", function() {
+                selectPayment("Cash");
+            });
+
+            // Reset functionality
+            resetButton.addEventListener("click", function() {
+                resetPopup.style.display = "block";
+                overlay.style.display = "block";
+            });
+
+            yesReset.addEventListener("click", function() {
+                localStorage.clear();
+                location.reload();
+            });
+
+            noReset.addEventListener("click", function() {
+                resetPopup.style.display = "none";
+                overlay.style.display = "none";
+            });
+
+            updateBalance();
+        });
+    </script>
+</body>
+</html>
