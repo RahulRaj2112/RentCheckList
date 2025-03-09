@@ -1,0 +1,75 @@
+body { 
+    font-family: Arial, sans-serif; 
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+.group {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    transition: background-color 0.3s ease-in-out;
+}
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+.highlight {
+    background-color: #fff8c4 !important; /* Light Yellow */
+}
+.rent-checkbox {
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+.balance {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.reset-container {
+    text-align: center;
+    margin-top: 15px;
+}
+.reset-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.reset-button:hover {
+    background-color: darkred;
+}
+/* Responsive Design */
+@media (max-width: 600px) {
+    th, td {
+        padding: 10px;
+        font-size: 14px;
+    }
+    .rent-checkbox {
+        transform: scale(1.3);
+    }
+}
