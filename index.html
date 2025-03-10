@@ -7,35 +7,110 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Rent Payment Tracker</h1>
+   
+    <h1><strong>Mr.P. THANGAVEL's RENTAL CHECK LIST</strong></h1>
     
     <div class="group">
-        <h2>Group 1 (7 Houses)</h2>
+        <h2>Ground Floor </h2>
         <table>
             <thead>
                 <tr>
                     <th>Rent House</th>
-                    <th>Amount ($)</th>
+                    <th>Amount (₹)</th>
                     <th>Paid</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>House 1</td><td class="amount">1000</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
-                <tr><td>House 2</td><td class="amount">1200</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
-                <tr><td>House 3</td><td class="amount">1100</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
-                <tr><td>House 4</td><td class="amount">1050</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
-                <tr><td>House 5</td><td class="amount">1150</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
-                <tr><td>House 6</td><td class="amount">1250</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
-                <tr><td>House 7</td><td class="amount">1300</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 1</td><td class="amount">7,300</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 2</td><td class="amount">7,000</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 3</td><td class="amount">7,000</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 4</td><td class="amount">7,000</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 5</td><td class="amount">7,000</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 6</td><td class="amount">7,000</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 7</td><td class="amount">7,000</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
             </tbody>
         </table>
     </div>
 
-    <div class="balance">Total Balance: $<span id="balance">0</span></div>
+    <div class="group">
+        <h2>1st Floor</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rent House</th>
+                    <th>Amount (₹)</th>
+                    <th>Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>House 8</td><td class="amount">8,300</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 9</td><td class="amount">7,300</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 10</td><td class="amount">7,300</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 11</td><td class="amount">7,300</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 12</td><td class="amount">7,300</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 13</td><td class="amount">7,300</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+                <tr><td>House 14</td><td class="amount">7,300</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="group">
+        <h2>Rental shop</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rent House</th>
+                    <th>Amount (₹)</th>
+                    <th>Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Shop</td><td class="amount">3,500</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="group">
+        <h2>Kattoor Rent house </h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rent House</th>
+                    <th>Amount (₹)</th>
+                    <th>Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>House </td><td class="amount">12,500</td><td><input type="checkbox" class="rent-checkbox"><span class="payment-method"></span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="balance">Total Balance: ₹<span id="balance">0</span></div>
     <div class="reset-container">
         <button class="reset-button" id="reset-button">Reset All</button>
     </div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p>Select Payment Method:</p>
+        <button id="gpay">GPay</button>
+        <button id="cash">Cash</button>
+    </div>
+    
+    <div class="reset-popup" id="reset-popup">
+        <p>Are you sure you want to reset all selections?</p>
+        <button id="yes-reset">Yes</button>
+        <button id="no-reset">No</button>
+    </div>
 
-    <script src="script.js"></script>
+    <div class="reset-popup" id="confirm-unselect-popup">
+        <p>Are you sure you want to unselect this option?</p>
+        <button id="yes-unselect">Yes</button>
+        <button id="no-unselect">No</button>
+    </div>
+    
+    <script src="script.js" defer></script>
 </body>
 </html>
