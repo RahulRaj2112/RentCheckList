@@ -2,15 +2,13 @@ body {
     font-family: Arial, sans-serif; 
     padding: 20px;
     background-color: #f9f9f9;
-
-}
-body {
     background-image: url('back.jpg'); /* Change to your image filename */
-    background-size: cover; /* Ensures the image covers the whole screen */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    background-attachment: fixed; /* Keeps the image fixed while scrolling */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
 h1 {
     text-align: center;
     color: #333;
@@ -18,30 +16,35 @@ h1 {
     padding: 40px;
 }
 
+/* ✅ Enlarged Group */
 .group {
     background: #E7E8D1;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
+    padding: 50px; /* Increased padding */
+    border-radius: 12px;
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 50px;
+    width: 90%; /* Wider */
+    max-width: 1200px; /* Limits maximum width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* ✅ Thicker table borders */
+/* ✅ Enlarged Table */
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 18px;
-    border: 1.8px solid #333;  /* Thicker outer border */
+    font-size: 20px; /* Slightly larger text */
+    border: 2px solid #333;  /* Thicker outer border */
 }
 
 /* ✅ Thicker borders for all cells */
 th, td {
-    border: 1.8px solid #333;  /* Increased thickness */
-    padding: 6px;  /* Reduced padding to make table less wide */
+    border: 2px solid #333;  /* Increased thickness */
+    padding: 10px;  /* Increased padding */
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;  /* Larger text */
     font-weight: bold;
-    height: 50px;  /* Fixed row height */
+    height: 60px;  /* Fixed row height */
     white-space: nowrap;
 }
 
@@ -49,15 +52,15 @@ th, td {
 th {
     background-color: #81b622;
     color: white;
-    border: 1.8px solid #333;  /* Thicker border for header */
+    border: 2px solid #333;
 }
 
 /* ✅ Alternating row colors for readability */
 tr:nth-child(even) {
-    background-color: #FFFFFF;  /* Light gray */
+    background-color: #f2f2f2;
 }
 tr:nth-child(odd) {
-    background-color: #FFFFFF ;  /* Light gray */
+    background-color: #ffffff;
 }
 
 .highlight {
@@ -75,43 +78,48 @@ tr:nth-child(odd) {
 
 /* ✅ Ensure row height does not increase when payment method is shown */
 .rent-checkbox {
-    transform: scale(1.3);
+    transform: scale(1.5); /* Increased checkbox size */
     flex-shrink: 0;  
 }
 
 .payment-method {
-    font-size: 16px;
+    font-size: 18px; /* Larger */
     color: rgb(2, 44, 2);
     font-weight: bold;
-    min-width: 50px;
+    min-width: 60px;
     text-align: center;
     display: inline-block;
 }
 
+/* ✅ Enlarged Balance Display */
 .balance {
-    font-size: 30px;
+    font-size: 32px;
     font-weight: bold;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
     background: #E7E8D1;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+    width: 50%; /* Centered and enlarged */
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* ✅ Enlarged Reset Button */
 .reset-container {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .reset-button {
     background-color: red;
     color: white;
     border: none;
-    padding: 10px 18px;
-    font-size: 18px;
+    padding: 14px 24px;
+    font-size: 20px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -120,6 +128,7 @@ tr:nth-child(odd) {
     background-color: darkred;
 }
 
+/* ✅ Popups */
 .popup, .reset-popup {
     display: none;
     position: fixed;
@@ -127,26 +136,26 @@ tr:nth-child(odd) {
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
-    padding: 20px;
-    border-radius: 12px;
+    padding: 25px;
+    border-radius: 14px;
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
     z-index: 1000;
     width: 90%;
-    max-width: 300px;
+    max-width: 350px;
 }
 
 .popup button, .reset-popup button {
-    margin: 5px;
-    padding: 10px;
+    margin: 6px;
+    padding: 12px;
     cursor: pointer;
     border: none;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     width: 100%;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .popup button {
@@ -170,17 +179,28 @@ tr:nth-child(odd) {
     z-index: 999;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    th, td {
-        padding: 4px;  /* Further reduced padding for small screens */
-        font-size: 16px;
-        height: 45px;  /* Maintain consistent height */
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+    .group {
+        width: 95%;
+        padding: 30px;
     }
+
+    th, td {
+        padding: 6px;
+        font-size: 18px;
+        height: 50px;
+    }
+
     .popup, .reset-popup {
         width: 95%;
     }
+
     .rent-checkbox {
-        transform: scale(1.2);
+        transform: scale(1.3);
+    }
+
+    .balance {
+        width: 90%;
     }
 }
